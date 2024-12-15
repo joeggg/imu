@@ -1,0 +1,15 @@
+[package]
+name = "imu"
+version = "0.1.0"
+edition = "2021"
+
+# We use a custom profile to keep colcon
+# separate from "normal" rust building.
+[profile.colcon]
+inherits = "release"
+
+[dependencies]
+futures = "0.3.30"
+r2r = { version = "0.9.0", git = "https://github.com/sequenceplanner/r2r.git" }
+tokio = { version = "1.39.2", features = ["full"] }
+tokio-serial = "5.4.4"
