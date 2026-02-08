@@ -21,7 +21,7 @@ async fn main() -> Result<(), Error> {
 
     let imu_pub = node.create_publisher::<Imu>(&format!("/imu_{}", id), QosProfile::default())?;
 
-    let port = tokio_serial::new(serial_port_path, 115200)
+    let port = tokio_serial::new(serial_port_path, 921600)
         .open_native_async()
         .expect("Failed to open stream to serial port");
 
@@ -30,5 +30,7 @@ async fn main() -> Result<(), Error> {
 
     loop {
         node.spin_once(Duration::from_millis(100));
+        // TODO: investigate busy loop here without async sleep
+        tokio::time::sleep(Duration::from_millis(100)).await;
     }
 }
