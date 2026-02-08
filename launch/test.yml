@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+launch:
+  - node:
+      pkg: imu
+      exec: imu
+      name: imu
+      param:
+        - name: id
+          value: 0
+        - name: serial_port_path
+          value: /dev/ttyACM0
